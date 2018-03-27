@@ -13,7 +13,7 @@ If you don't yet have node.js installed locally, you can [follow these instructi
 This assumes your local development environment is located at /Users/<your user name>/Development/tutorials/react but you can establish your working directory anywhere.
 
 ```
-cd ~/Development/tutorials/react/tth-react-basics`
+cd ~/Development/tutorials/react/tth-react-basics
 git clone https://github.com/jonmitten/react-basics tth-react-basics
 ```
 
