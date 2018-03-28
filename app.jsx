@@ -35,4 +35,13 @@ function Application(props) {
     </div>
   );
 };
-ReactDOM.render(<Application title="The Ultimate Scoreboard App" />, document.getElementById('container'));
+
+Application.propTypes = {
+  title: React.PropTypes.string.isRequired,
+};
+
+Application.defaultProps = {
+  title: "Scoreboard",
+}
+
+ReactDOM.render(<Application title={ "Dopest Scoreboard in the Universe" } />, document.getElementById('container'));
