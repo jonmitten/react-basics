@@ -47,9 +47,7 @@ Player.propTypes = {
 
 var Counter = React.createClass({
 
-  propTypes: {
-    score: React.PropTypes.number.isRequired
-  },
+  propTypes: {},
 
   getInitialState: function() {
     // return the initial state object.
