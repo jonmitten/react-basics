@@ -34,7 +34,7 @@ function Player(props) {
         {props.name}
       </div>
       <div className="player-score">
-        <Counter initialScore={props.score} />
+        <Counter score={props.score} />
       </div>
     </div>
   );
@@ -44,44 +44,27 @@ Player.propTypes = {
   name: React.PropTypes.string.isRequired,
 };
 
-var Counter = React.createClass({
+// create new props for increment and decrement.
 
-  propTypes: {
-    initialScore: React.PropTypes.number.isRequired,
-  },
+// reconstruct prop types for a stateless component.
 
-  getInitialState: function() {
-    // return the initial state object.
-    // generally our state is going to be an object with multiple keys in it
-    return {
-      score: this.props.initialScore,
+// revert back into functional component:
 
-    }
-  },
+function Counter(props) {
+  return(
+    <div className="counter">
+      <button className="counter-action decrement"> - </button>
+      <div className="counter-score">{props.score}</div>
+      <button className="counter-action increment" > + </button>
+    </div>
+  );
+};
 
-  incrementScore: function(e) {
-    this.setState({
-      score: (this.state.score + 1)
-    });
-  },
+Counter.propTypes = {
+  score: React.PropTypes.number.isRequired,
+}
 
-  decrementScore: function(e) {
-    this.setState({
-      score: (this.state.score - 1)
-    });
-  },
 
-  render: function() {
-    return(
-      <div className="counter">
-        <button className="counter-action decrement" onClick={ this.decrementScore }> - </button>
-        <div className="counter-score">{this.state.score}</div>
-        <button className="counter-action increment" onClick={ this.incrementScore }> + </button>
-      </div>
-    );
-  }
-
-});
 
 function Application(props) {
   return(
