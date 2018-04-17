@@ -1,27 +1,29 @@
 var PLAYERS = [{
   id: 1,
   name: "Jo Mitt",
-  score: 41
+  score: 0
 },
 {
   id:2,
   name: "Timm Mars",
-  score:40
+  score:0
 },
 {
   id:3,
   name: "Sterling Asana",
-  score:15
+  score:0
 }
 ];
 
 var nextId = 4;
+
 
 function Header(props) {
   return(
     <div className="header">
       <Stats players={props.players}/>
       <h1>{ props.title }</h1>
+      <Stopwatch />
     </div>
   );
 };
@@ -30,6 +32,7 @@ Header.propTypes = {
   title: React.PropTypes.string.isRequired,
   players: React.PropTypes.array.isRequired,
 };
+
 
 function Stats(props){
   var totalPlayers = props.players.length;
@@ -58,6 +61,7 @@ Stats.propTypes = {
   players: React.PropTypes.array.isRequired,
 }
 
+
 function Player(props) {
   return(
     <div className="player">
@@ -80,7 +84,7 @@ Player.propTypes = {
 
 };
 
-// create new props for increment and decrement.
+
 var AddPlayerForm = React.createClass({
   propTypes: {
     onAdd: React.PropTypes.func.isRequired,
@@ -110,6 +114,7 @@ var AddPlayerForm = React.createClass({
   }
 });
 
+
 function Counter(props) {
   return(
     <div className="counter">
@@ -125,7 +130,43 @@ Counter.propTypes = {
   onChange: React.PropTypes.func.isRequired,
 }
 
-// create a component class for application
+var Stopwatch = React.createClass({
+  getInitialState: function() {
+    return {
+      running: false,
+    };
+  },
+  onStart: function(){
+    this.setState({
+      running: true,
+    });
+  },
+  onStop: function(){
+    this.setState({
+      running: false,
+    });
+  },
+  onReset: function(){
+
+  },
+  render: function() {
+
+    return (
+      <div className="stopwatch">
+        <h2>Stopwatch</h2>
+        <div className="stopwatch-time">0</div>
+        {
+          (this.state.running) ?
+          <button onClick={this.onStop}>Stop</button>
+          :
+          <button onClick={this.onStart}>Start</button>
+        }
+        <button>Reset</button>
+      </div>
+    )
+  }
+});
+
 var Application = React.createClass({
 
   propTypes : {
