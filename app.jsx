@@ -76,9 +76,18 @@ Player.propTypes = {
 };
 
 // create new props for increment and decrement.
-
-// reconstruct prop types for a stateless component.
-// revert back into functional component:
+var AddPlayerForm = React.createClass({
+  render: function() {
+    return (
+      <div className="add-player-form">
+        <form>
+          <input type="text" />
+          <input type="submit" value="Add Player" />
+        </form>
+      </div>
+    )
+  }
+});
 
 function Counter(props) {
   return(
@@ -137,6 +146,7 @@ var Application = React.createClass({
           )
         }.bind(this))}
         </div>
+        <AddPlayerForm />
       </div>
     );
   }
