@@ -47,7 +47,6 @@ Player.propTypes = {
 // create new props for increment and decrement.
 
 // reconstruct prop types for a stateless component.
-
 // revert back into functional component:
 
 function Counter(props) {
@@ -65,34 +64,43 @@ Counter.propTypes = {
 }
 
 
+// create a component class for application
+var Application = React.createClass({
 
-function Application(props) {
-  return(
-    <div className="scoreboard">
-      <Header title={props.title} />
-      <div className="players">
-      { props.players.map(function(player) {
-        return <Player name={player.name} score={player.score} key={player.id} />
-      })}
+  propTypes : {
+    title: React.PropTypes.string,
+    initialPlayers: React.PropTypes.arrayOf(React.PropTypes.shape({
+      name: React.PropTypes.string.isRequired,
+      score: React.PropTypes.number.isRequired,
+      id: React.PropTypes.number.isRequired,
+    })).isRequired,
+  },
+  getDefaultProps: function(){
+    return {
+      title: "Scoreboard",
+    };
+  },
+  getInitialState: function(){
+    return {
+      players: this.props.initialPlayers,
+    };
+  },
+  render:function(){
+    return (
+      <div className="scoreboard">
+        <Header title={this.props.title} />
+        <div className="players">
+        { this.state.players.map(function(player) {
+          return <Player name={player.name} score={player.score} key={player.id} />
+        })}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+});
 
-Application.propTypes = {
-  title: React.PropTypes.string,
-  players: React.PropTypes.arrayOf(React.PropTypes.shape({
-    name: React.PropTypes.string.isRequired,
-    score: React.PropTypes.number.isRequired,
-    id: React.PropTypes.number.isRequired,
-  })).isRequired,
-};
-
-Application.defaultProps = {
-  title: "Scoreboard",
-}
 
 ReactDOM.render(
-  <Application players={PLAYERS} />,
+  <Application initialPlayers={PLAYERS} />,
   document.getElementById('container')
 );
