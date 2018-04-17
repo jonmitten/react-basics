@@ -18,6 +18,7 @@ var PLAYERS = [{
 function Header(props) {
   return(
     <div className="header">
+      <Stats />
       <h1>{ props.title }</h1>
     </div>
   );
@@ -64,6 +65,25 @@ function Counter(props) {
 Counter.propTypes = {
   score: React.PropTypes.number.isRequired,
   onChange: React.PropTypes.func.isRequired,
+}
+
+function Stats(props){
+  return (
+    <table className="stats">
+      <thead>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Players</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>Total Points</td>
+          <td>123</td>
+        </tr>
+      </tbody>
+    </table>
+  )
 }
 
 
